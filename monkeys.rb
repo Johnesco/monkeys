@@ -10,18 +10,18 @@ print best_guess
 while (unfinished)
 
 	streak = 0
-	guess = alpha.sample 
+	guess = alpha.sample
 
 	if (guess == alpha[0])
 		on_streak = true
 
-		while (on_streak) 
+		while (on_streak)
 			if guess == alpha[streak]
 				if (guess > best_guess)
 					best_guess = guess
 					print guess
 				end
-				streak = streak + 1 
+				streak = streak + 1
 				if (guess == "z")
 					puts ; puts "amazing!"
 					exit
@@ -31,7 +31,5 @@ while (unfinished)
 				on_streak = false
 			end
 		end
-
 	end
-
-end 
+end
