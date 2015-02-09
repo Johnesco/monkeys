@@ -5,7 +5,7 @@ var unfinished = true;
 var best_guess = "a";
 var counter = 0;
 
-print (best_guess);
+console.log(best_guess);
 
 while (unfinished){
 	var streak = 0;
@@ -20,12 +20,12 @@ while (unfinished){
 
 				if (guess > best_guess){
 					best_guess = guess;
-					print (guess);
+					console.log(guess);
 				};
 
 				streak++;
 
-				if (guess === "z"){ print ("amazing!");};
+				if (guess === "z"){ console.log("amazing!");};
 
 				guess = alpha[Math.floor(Math.random() * alpha.length)];
 
