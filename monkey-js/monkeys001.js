@@ -69,12 +69,11 @@ function typewriter(string)
 	};
 };
 
-
 // Create new typewriter object, send it a "story"
-var abc = new typewriter("abcdefg");
+var Monkey1 = new typewriter("abcdefg");
 
-while (abc.incomplete){
-	abc.guess();
-};
+while (Monkey1.incomplete){
+		Monkey1.guess();
+	}
 
-console.log(abc.string + " printed after " + abc.guess_count + " guesses.");
+console.log("Monkey1 printed " + Monkey1.string + " after " + Monkey1.guess_count + " guesses.");
