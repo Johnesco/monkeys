@@ -8,17 +8,19 @@ function typewriter(string)
 	this.best_index = 0;
 	this.incomplete = true;
 
+// Returns a random index of the story
 	this.randomIndex = function ()
 	{
 		return Math.floor(Math.random() * this.length)
 	};
 
+// Called when a match is found
+// advances index
 	this.matched = function()
 	{
 		// check to see if final letter matched.
 		if (this.index == this.length-1)
 		{
-			console.log("You win!");
 			this.incomplete = false;
 		};
 
@@ -26,14 +28,11 @@ function typewriter(string)
 		this.index++;
 	};
 
+// Called on a mismatch
+// Sets best match
+// resets index
 	this.mismatched = function()
 	{
-		// else, check to see if new best index reached, reset index
-		if (this.index > this.best_index)
-		{
-			this.best_index = this.index;
-			console.log(this.best_index);
-		};
 		this.index = 0;
 	};
 
@@ -43,22 +42,34 @@ function typewriter(string)
 
 	this.guess = function()
 	{
-		// If the letter matches random guess
+		// Assign random guess to object's "letter"
 		this.letter = this.story[this.randomIndex()];
 
+		// If letter matches current index call matched()
+		// else call mismatched()
 		if (this.letter == this.story[this.index])
 		{
 			this.matched();
 		} else {
 			this.mismatched();
 		};
+
+		//check to see if new best index reached, reset index
+		if (this.index > this.best_index)
+		{
+			console.log(this.story[this.best_index]);
+			this.best_index = this.index;
+
+		};
 	};
 };
 
 
 // Create new object, send it "abc"
-var abc = new typewriter("abcdefgh");
+var abc = new typewriter("abcdef");
 
 while (abc.incomplete){
 	abc.guess();
 };
+
+console.log("You win");
