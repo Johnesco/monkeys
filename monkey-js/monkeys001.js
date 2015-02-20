@@ -44,8 +44,9 @@ function typewriter(string)
 
 	this.guess = function()
 	{
-		// Assign random guess to object's "letter"
+		// Pick a random letter from story
 		this.letter = this.story[this.randomIndex()];
+		// increment guess
 		this.guess_count++;
 
 		// If letter matches current index call matched()
@@ -58,8 +59,7 @@ function typewriter(string)
 		};
 
 		// check to see if new best index reached,
-		// print latest streak
-		// reset index
+		// print latest streak and guesses taken
 		if (this.index > this.best_index)
 		{
 			console.log(this.story[this.best_index] + " " + this.guess_count + " guesses.");
@@ -70,7 +70,7 @@ function typewriter(string)
 };
 
 
-// Create new object, send it "abc"
+// Create new typewriter object, send it a "story"
 var abc = new typewriter("abcdefg");
 
 while (abc.incomplete){
