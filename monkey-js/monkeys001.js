@@ -70,7 +70,7 @@ function typewriter(string)
 };
 
 // Create new typewriter object, send it a "story"
-var Monkey1 = new typewriter("abcdefg");
+var Monkey1 = new typewriter("abcd");
 
 while (Monkey1.incomplete){
 		Monkey1.guess();
