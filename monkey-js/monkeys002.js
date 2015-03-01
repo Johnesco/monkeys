@@ -1,6 +1,7 @@
 // Typewriter object
 // holds string and it's length and an counter to the string
 var Typewriter = function(string){
+	this.string = string;
 	this.story = string.split("");
 	this.length = this.story.length;
 	this.alphabet = ("abcdefghijklmnopqrstuvwxyx").split("");
@@ -48,7 +49,14 @@ Typewriter.prototype.guess = function(){
 	// check to see if new best counter reached,
 	// print latest streak and guesses taken
 	if (this.counter > this.best_count){
-		console.log(this.story[this.best_count] + " " + this.guess_count + " guesses.");
+
+		//loop out how much has been found
+		var discovered = "";
+		for (var i=0; i <= this.best_count; i++){
+			discovered+= this.story[i];
+		}
+
+		console.log('"' + discovered + '"' + " string discovered after " + this.guess_count + " guesses.");
 		this.best_count = this.counter;
 	}
 };
@@ -59,7 +67,7 @@ Typewriter.prototype.finalAnswer = function(){
 
 
 // Create new typewriter object, send it a "story"
-var Monkey1 = new Typewriter("abcde");
+var Monkey1 = new Typewriter("hellow");
 
 while (Monkey1.incomplete){
 	Monkey1.guess();
