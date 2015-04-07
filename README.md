@@ -5,6 +5,9 @@ I'm writing this in several langauge to both learn those languages and improve m
 
 Updates:
 ----
+Changing folders around, all js is now is "node" and a new folder for DOM related html + JS.
+Creating html-js/monkeys000.html
+
 monkey-js/monkeys003.js:
 Putting the code through JLINT and seeing how much I can clean it up, then will start to refactor parts that need it, and try to DRY up the code more.
 
