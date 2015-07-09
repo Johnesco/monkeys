@@ -2,7 +2,7 @@
 // holds string and it's length and an counter to the string
 var Typewriter = function (string) {
         "use strict";
-        this.alphabet = "abcdefghijklmnopqrstuvwxyz"
+        this.alphabet = "abcdefghijklmnopqrstuvwxyz";
         this.story = string;
         this.counter = 0;
         this.best_count = 0;
@@ -14,20 +14,21 @@ var Typewriter = function (string) {
 // Returns a random letter of the alphabet
 Typewriter.prototype.random_letter = function () {
     "use strict";
-    return Math.floor(Math.random() * this.alphabet.length);
+    return this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
 };
 
 // Called when a match is found, advances counter
 Typewriter.prototype.matched_advance = function () {
-    // check to see if final letter matched.
     "use strict";
+    // check to see if final letter matched, if so, mark as complete
     if (this.counter === this.story.length - 1) {
         this.incomplete = false;
     } else {
-    // increase counter
+    // increase counter, increase best if applicable
     this.counter += 1;
         if (this.counter > this.best_count){
             this.best_count = this.counter;
+            console.log(this.current_answer());
         }
     }
 };
@@ -39,7 +40,8 @@ Typewriter.prototype.missmatched_reset = function () {
 };
 
 Typewriter.prototype.guess = function () {
-    this.letter = this.alphabet[this.random_letter()];
+    "use strict";
+    this.letter = this.random_letter();
     this.guess_count += 1;
 
     if (this.letter === this.story.charAt(this.counter)) {
@@ -64,17 +66,12 @@ Typewriter.prototype.finalAnswer = function () {
     return ("found " + this.story + " after " + this.guess_count + " guesses.");
 };
 
-// Create new typewriter object, send it a "story"
-var Monkey1 = new Typewriter("abcde");
-var last_count = 0;
+
+// Main Program
+var Monkey1 = new Typewriter("abcdefg");
 
 while (Monkey1.incomplete) {
     Monkey1.guess();
-    if (Monkey1.best_count > last_count){
-        last_count = Monkey1.best_count;
-        console.log(Monkey1.current_answer());
-    }
-
 }
 
 console.log(Monkey1.finalAnswer());
