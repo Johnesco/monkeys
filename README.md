@@ -5,6 +5,9 @@ I'm writing this in several langauge to both learn those languages and improve m
 
 Updates:
 ----
+monkey-js/monkeys004.js:
+Removing references to Arrays and using string manipulation instead. Trying out splittup up some functions.
+
 Changing folders around, all js is now is "node" and a new folder for DOM related html + JS.
 Creating html-js/monkeys000.html
 
