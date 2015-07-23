@@ -1,6 +1,6 @@
 // Typewriter object
 // holds string and it's length and an counter to the string
-var Typewriter = function (string) {
+function Typewriter (string) {
         "use strict";
         this.alphabet = "abcdefghijklmnopqrstuvwxyz";
         this.story = string;
@@ -17,6 +17,18 @@ Typewriter.prototype.random_letter = function () {
     return this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
 };
 
+Typewriter.prototype.guess = function () {
+    "use strict";
+    this.letter = this.random_letter();
+    this.guess_count += 1;
+
+    if (this.letter === this.story.charAt(this.counter)) {
+        this.matched_advance();
+    } else {
+        this.counter = 0;
+    }
+};
+
 // Called when a match is found, advances counter
 Typewriter.prototype.matched_advance = function () {
     "use strict";
@@ -28,51 +40,37 @@ Typewriter.prototype.matched_advance = function () {
     this.counter += 1;
         if (this.counter > this.best_count){
             this.best_count = this.counter;
-            console.log(this.current_answer());
+            console.log(this.answer());
         }
     }
 };
 
 
-Typewriter.prototype.missmatched_reset = function () {
+Typewriter.prototype.answer = function () {
     "use strict";
-    this.counter = 0;
-};
 
-Typewriter.prototype.guess = function () {
-    "use strict";
-    this.letter = this.random_letter();
-    this.guess_count += 1;
+    if (this.incomplete){
+        var story_so_far ="";
+        for (var i = 0; i < this.best_count; i++){
+            story_so_far = story_so_far + this.story.charAt(i);
+        }
+        return ("found " + story_so_far + " after " + this.guess_count + " guesses");
 
-    if (this.letter === this.story.charAt(this.counter)) {
-        this.matched_advance();
     } else {
-        this.missmatched_reset();
+        
+        return ("found " + this.story + " after " + this.guess_count + " guesses.");
     }
+    
 };
 
-Typewriter.prototype.current_answer = function () {
-    "use strict";
-    var story_so_far ="";
-
-    for (var i = 0; i < this.best_count; i++){
-        story_so_far = story_so_far + this.story.charAt(i);
-    }
-    return ("found " + story_so_far + " after " + this.guess_count + " guesses");
-};
-
-Typewriter.prototype.finalAnswer = function () {
-    "use strict";
-    return ("found " + this.story + " after " + this.guess_count + " guesses.");
-};
 
 
 // Main Program
-var Monkey1 = new Typewriter("abcdefg");
+var Monkey = [];
+ Monkey[0] = new Typewriter("abcde");
 
-while (Monkey1.incomplete) {
-    Monkey1.guess();
+while (Monkey[0].incomplete) {
+    Monkey[0].guess();
 }
-
-console.log(Monkey1.finalAnswer());
+console.log(Monkey[0].answer());
 
